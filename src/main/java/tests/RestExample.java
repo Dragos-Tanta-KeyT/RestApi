@@ -27,14 +27,14 @@ public class RestExample {
 		
 		Response response = 
 				given().
-					header("Content-type", "application/json").
-					header("accept", "application/json").
+					//header("Content-type", "application/json").
+					//header("accept", "application/json").
 					//ex 1--> direct in body ca string
-					//body("{\"title\":\"Test Dragos din java\",\"body\":\"Test Dragos din java\"}").
+					body("{\"title\":\"Test Dragos din java\",\"body\":\"Test Dragos din java\"}").
 					//ex 2 --> body as JsonOject
 					//body(requestBody.toJSONString()).
 					//ex 3 --> body ca si fisier json
-					body(fisier).
+					//body(fisier).
 				when().
 					post("https://keytodorestapi.herokuapp.com/api/save").
 				then().
