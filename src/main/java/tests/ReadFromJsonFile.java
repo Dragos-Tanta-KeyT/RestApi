@@ -42,9 +42,11 @@ public class ReadFromJsonFile {
 		System.out.println(jsonPath.getString("[1].employee.lastName"));
 		
 		System.out.println("----------------");
-		System.out.println(jsonPath.getString("[1].employee.company"));
+		System.out.println(jsonPath.getString("[1].employee"));
 		System.out.println(jsonPath.getString("[1].employee.company[1]"));
-		System.out.println(jsonPath.getString("[1].employee.company[1].two.last"));
+		System.out.println(jsonPath.getString("[1].employee.company[1].two.comp"));
+	//	System.out.println("all Danyka :" + jsonPath.getList("find{it.lastName == 'Bobo'}.lastName"));
+
 
 	}
 	

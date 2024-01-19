@@ -57,11 +57,14 @@ public class JsonPathExample {
 
 		System.out.println("--------------------------------------------");
 		
-		System.out.println("all Danyka :" + jsonPath.getString("users.findAll{it.name == 'Danyka'}._id"));
+		System.out.println("all Danyka :" + jsonPath.getList("users.findAll{it.name == 'Danyka'}._id"));
 
 		System.out.println("single Danyka :" + jsonPath.getString("users.find{it.name == 'Danyka' && it.age==23}._id"));
 
-	
+		System.out.println("danyka sau Cristobal :" + 
+		jsonPath.getString("users.findAll{it.name == 'Danyka' || it.name == 'Cristobal' && it.age==12}.name"));
+
+		System.out.println("all under 18 " + jsonPath.getList("users.findAll{it.age >18}.findAll{it.name=='Jairo'}"));
 	
 	}
 }

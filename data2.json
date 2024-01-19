@@ -15,13 +15,16 @@
 					},
 				{
 					"two":{
-						"first" : "MS",
-						"last"  : "DOS"
+						"comp" : "MS",
+						"comp"  : "DOS"
 						}
 				},
 				{
 					"three" : "amazon"
 				}]				
 			}
-	}	
+	}	,
+	{
+	"employee" : "Bobo"
+	}
 ]
