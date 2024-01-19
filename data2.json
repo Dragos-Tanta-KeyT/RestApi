@@ -10,7 +10,18 @@
 			"employee" : {
 				"firstName" : "Bob",
 				"lastName"  : "Bobo",
-				"company"   : "apple"				
+				"company"   : [{
+					"one":"apple"
+					},
+				{
+					"two":{
+						"first" : "MS",
+						"last"  : "DOS"
+						}
+				},
+				{
+					"three" : "amazon"
+				}]				
 			}
 	}	
 ]
