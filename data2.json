@@ -15,8 +15,7 @@
 					},
 				{
 					"two":{
-						"comp" : "MS",
-						"comp"  : "DOS"
+						"comp" : ["MS","DOS"]
 						}
 				},
 				{

@@ -45,7 +45,9 @@ public class ReadFromJsonFile {
 		System.out.println(jsonPath.getString("[1].employee"));
 		System.out.println(jsonPath.getString("[1].employee.company[1]"));
 		System.out.println(jsonPath.getString("[1].employee.company[1].two.comp"));
-	//	System.out.println("all Danyka :" + jsonPath.getList("find{it.lastName == 'Bobo'}.lastName"));
+		System.out.println("get DOS :" + jsonPath.getList("find{ it.employee.firstName == 'Bob' }.employee.company.two.comp[0]"));
+
+		System.out.println("get DOS :" + jsonPath.getList("find{ it.employee.firstName == 'Bob' }.employee.company.find{ it.two.comp.contains('DOS')}.two.comp[0]"));
 
 
 	}
