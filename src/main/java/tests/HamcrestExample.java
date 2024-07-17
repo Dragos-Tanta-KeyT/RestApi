@@ -3,12 +3,16 @@ package tests;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hamcrest.core.IsSame;
 import org.testng.Assert;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+//import static org.junit.Assert.assertThat;
 
 import org.testng.annotations.Test;
 
@@ -34,13 +38,14 @@ public class HamcrestExample {
 		
 		String name =  jsonPath.getString("name");
 		System.out.println(name);
-		
+		String url =  jsonPath.getString("url");
+
 		//TestNg assert
 		assertEquals(name, "Tatooine");
 		
 		//Hamcrest assert
 		//assertThat(name, "Tatooine");
-		assertThat(name, equalTo( "Tatooine"));
+		assertThat(name, equalTo( "Tatooine2s"));
 		assertThat(name, is("Tatooine"));//is(T value)
 		assertThat(name, is(equalTo("Tatooine")));//is(Matcher<T>)
 		
@@ -53,6 +58,22 @@ public class HamcrestExample {
 		assertThat(name, is(not(instanceOf(Integer.class))));
 		assertThat(name, is(instanceOf(String.class)));
 		
+		//notNull
+		assertThat(name, is(notNullValue()));
+	
+		
+		//isEmpty
+		String text = "";
+		assertThat(text, is(emptyString()));
+		//isnull
+		text = null;
+		assertThat(text, is(nullValue()));
+		//isEmptyOrNull
+		assertThat(text, is(emptyOrNullString()));
+		//compresing white spaces
+		String name2 = "  Tat ooine  ";
+		assertThat(name2, is(equalToCompressingWhiteSpace(name2)));
+
 		//starts-with
 		assertThat(name, startsWith("Tat"));
 		assertThat(resp.asString(), startsWith("{\"name\""));
@@ -66,6 +87,15 @@ public class HamcrestExample {
 		assertThat(name, containsString("tooi"));
 		assertThat(name, containsStringIgnoringCase("tOOi"));
 		
+		//all off
+        assertThat(url , allOf(startsWith("http"), containsString("swapi"), endsWith("1/")));
+
+        //any of
+        assertThat(url , anyOf(startsWith("my"), containsString("Val"), endsWith("1/")));
+
+        //string contains in any order
+    	assertThat(resp.asString(), stringContainsInOrder("terrain", "url"));
+
 		//pattern
 		assertThat(name, matchesPattern("[a-zA-Z]+"));
 		name = "Tatooine123";
@@ -73,7 +103,7 @@ public class HamcrestExample {
 		String diameter =  jsonPath.getString("diameter");
 		assertThat(diameter, matchesPattern("[0-9]+"));
 		
-		
+		//List
 		List<String> films = jsonPath.getList("films");
 		System.out.println(films.get(1));
 		
@@ -91,7 +121,7 @@ public class HamcrestExample {
 				startsWith("https:"),
 				endsWith("6/")));
 		
-		
+	
 		
 	assertThat(films, hasItem("https://swapi.dev/api/films/4/"));
 	assertThat(films, hasItems("https://swapi.dev/api/films/1/", 
@@ -105,6 +135,7 @@ public class HamcrestExample {
 	assertThat(8, is(lessThan(12)));
 	assertThat(films, hasSize(greaterThan(3)));
 	
+	//array
 	String[] array = { jsonPath.getString("name"), jsonPath.getString("rotation_period"),
 			jsonPath.getString("orbital_period"),jsonPath.getString("diameter"),
 			jsonPath.getString("climate")};
@@ -115,8 +146,17 @@ public class HamcrestExample {
 	assertThat(array, is(not(emptyArray())));
 	assertThat(array, is(not(nullValue())));
 
+	//map
+	Map<String, String> map = new HashMap<>();
+	map.put("name","Tatooine");
+	map.put("rotation_period","23");
+	map.put("orbital_period","304");
 	
-	assertThat(resp.asString(), stringContainsInOrder("terrain", "url"));
+    assertThat(map, hasKey("orbital_period"));
+    assertThat(map, hasValue("304"));
+    assertThat(map, hasEntry("name", "Tatooine"));
+
+	
 	//and
 	assertThat(resp.asString(), both(containsString("population")).and(containsString("terrain")));
 	//or
@@ -140,7 +180,7 @@ public class HamcrestExample {
 
 	
 	assertThat(diameter2, is(numbersOnly()));
-	assertThat(climate, is(numbersOnly()));
+	//assertThat(climate, is(numbersOnly()));
 
 	}
 	
